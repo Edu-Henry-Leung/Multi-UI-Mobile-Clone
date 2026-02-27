@@ -2,6 +2,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   Alert,
@@ -16,6 +17,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
+  const router = useRouter();
+
   const onPressAlert = () => {
     Alert.alert("Alert Button pressed");
   };
@@ -140,7 +143,10 @@ export default function Index() {
         <TouchableOpacity style={styles.navItem}>
           <AntDesign name="home" size={24} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => router.push("/search")}
+        >
           <Feather name="search" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
