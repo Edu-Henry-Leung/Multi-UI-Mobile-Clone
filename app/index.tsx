@@ -2,6 +2,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   Alert,
@@ -14,29 +15,24 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 export default function Index() {
+  const router = useRouter();
   const onPressAlert = () => {
     Alert.alert("Alert Button pressed");
   };
-
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar barStyle="dark-content" />
-      {/* Top Header */}
+      <StatusBar barStyle="dark-content" /> {/* Top Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.headerIconBtn}>
           <Text style={styles.headerIcon}>‹</Text>
         </TouchableOpacity>
-
         <View style={styles.headerTitleWrap}>
           <Text style={styles.headerSmall}>OOTD_EVERYDAY</Text>
           <Text style={styles.headerTitle}>Posts</Text>
         </View>
-
         <View style={styles.headerIconBtn} />
       </View>
-
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
@@ -61,7 +57,6 @@ export default function Index() {
               <Text style={styles.moreText}>⋯</Text>
             </TouchableOpacity>
           </View>
-
           {/* Main Photo */}
           <Image
             style={styles.mainImage}
@@ -70,7 +65,6 @@ export default function Index() {
             }}
             resizeMode="cover"
           />
-
           {/* Action Row */}
           <View style={styles.actionsRow}>
             <View style={styles.actionsLeft}>
@@ -88,39 +82,29 @@ export default function Index() {
               <Text style={styles.actionIcon}>🔖</Text>
             </TouchableOpacity>
           </View>
-
           {/* Likes */}
           <Text style={styles.likesText}>
             <Image
               style={styles.likesAvatar}
-              source={{
-                uri: "https://randomuser.me/api/portraits/men/2.jpg",
-              }}
+              source={{ uri: "https://randomuser.me/api/portraits/men/2.jpg" }}
             />
             <Image
               style={styles.likesAvatar}
-              source={{
-                uri: "https://randomuser.me/api/portraits/men/2.jpg",
-              }}
+              source={{ uri: "https://randomuser.me/api/portraits/men/2.jpg" }}
             />
             <Image
               style={styles.likesAvatar}
-              source={{
-                uri: "https://randomuser.me/api/portraits/men/2.jpg",
-              }}
+              source={{ uri: "https://randomuser.me/api/portraits/men/2.jpg" }}
             />
-            {"  "}Liked by paisley.print.48 and 7 others
+            Liked by paisley.print.48 and 7 others
           </Text>
-
           {/* Caption */}
           <View style={styles.captionRow}>
             <Text style={styles.username}>frenchie_fry39 </Text>
             <Text style={styles.captionText}>Fresh shot on a sunny day!</Text>
           </View>
-
           {/* Comments */}
           <Text style={styles.viewComments}>View all 12 comments</Text>
-
           <View style={styles.commentRow}>
             <Text style={styles.commentUser}>lil_wyatt838 </Text>
             <Text style={styles.commentText}>Awesome totes!!</Text>
@@ -130,10 +114,8 @@ export default function Index() {
             <Text style={styles.commentText}>Gorg. Love it!</Text>
             <Text style={styles.heart}> ♥</Text>
           </View>
-
           <Text style={styles.timeText}>1 day ago</Text>
         </View>
-
         {/* Bottom Alert Button */}
         <TouchableOpacity
           style={styles.alertBtn}
@@ -143,13 +125,15 @@ export default function Index() {
           <Text style={styles.alertBtnText}>Alert</Text>
         </TouchableOpacity>
       </ScrollView>
-
       {/* Bottom Nav */}
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.navItem}>
           <AntDesign name="home" size={24} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => router.push("/search")}
+        >
           <Feather name="search" size={24} color="black" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.navItem}>
@@ -158,20 +142,18 @@ export default function Index() {
         <TouchableOpacity style={styles.navItem}>
           <Feather name="shopping-bag" size={24} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => router.push("/profile")}
+        >
           <FontAwesome name="user-circle-o" size={24} color="black" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
-  safe: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-  },
-
+  safe: { flex: 1, backgroundColor: "#FFFFFF" },
   header: {
     height: 58,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -188,35 +170,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  headerIcon: {
-    fontSize: 22,
-    color: "#111",
-    fontWeight: "600",
-  },
-  headerTitleWrap: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerSmall: {
-    fontSize: 11,
-    color: "#777",
-    letterSpacing: 0.6,
-  },
-  headerTitle: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: "#111",
-    marginTop: 2,
-  },
-
-  scrollContent: {
-    paddingBottom: 0,
-  },
-
-  card: {
-    backgroundColor: "#FFF",
-  },
-
+  headerIcon: { fontSize: 22, color: "#111", fontWeight: "600" },
+  headerTitleWrap: { alignItems: "center", justifyContent: "center" },
+  headerSmall: { fontSize: 11, color: "#777", letterSpacing: 0.6 },
+  headerTitle: { fontSize: 16, fontWeight: "700", color: "#111", marginTop: 2 },
+  scrollContent: { paddingBottom: 0 },
+  card: { backgroundColor: "#FFF" },
   postTop: {
     flexDirection: "row",
     alignItems: "center",
@@ -224,45 +183,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
-  userRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  avatar: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: "#DDD",
-  },
-  username: {
-    fontSize: 13,
-    fontWeight: "700",
-    color: "#111",
-  },
-  subText: {
-    fontSize: 11,
-    color: "#777",
-    marginTop: 2,
-  },
+  userRow: { flexDirection: "row", alignItems: "center", gap: 10 },
+  avatar: { width: 34, height: 34, borderRadius: 17, backgroundColor: "#DDD" },
+  username: { fontSize: 13, fontWeight: "700", color: "#111" },
+  subText: { fontSize: 11, color: "#777", marginTop: 2 },
   moreBtn: {
     width: 36,
     height: 36,
     alignItems: "flex-end",
     justifyContent: "center",
   },
-  moreText: {
-    fontSize: 20,
-    color: "#111",
-    fontWeight: "700",
-  },
-
-  mainImage: {
-    width: "100%",
-    height: 360,
-    backgroundColor: "#EEE",
-  },
-
+  moreText: { fontSize: 20, color: "#111", fontWeight: "700" },
+  mainImage: { width: "100%", height: 360, backgroundColor: "#EEE" },
   actionsRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -270,28 +202,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingTop: 10,
   },
-  actionsLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
+  actionsLeft: { flexDirection: "row", alignItems: "center", gap: 10 },
   actionBtn: {
     width: 36,
     height: 36,
     alignItems: "center",
     justifyContent: "center",
   },
-  actionIcon: {
-    fontSize: 18,
-    color: "#111",
-  },
-
-  likesAvatar: {
-    width: 12,
-    height: 12,
-    borderRadius: 17,
-  },
-
+  actionIcon: { fontSize: 18, color: "#111" },
+  likesAvatar: { width: 12, height: 12, borderRadius: 17 },
   likesText: {
     paddingHorizontal: 14,
     marginTop: 2,
@@ -299,25 +218,19 @@ const styles = StyleSheet.create({
     color: "#111",
     fontWeight: "600",
   },
-
   captionRow: {
     flexDirection: "row",
     flexWrap: "wrap",
     paddingHorizontal: 14,
     marginTop: 6,
   },
-  captionText: {
-    fontSize: 12,
-    color: "#111",
-  },
-
+  captionText: { fontSize: 12, color: "#111" },
   viewComments: {
     paddingHorizontal: 14,
     marginTop: 6,
     fontSize: 12,
     color: "#888",
   },
-
   commentRow: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -325,20 +238,9 @@ const styles = StyleSheet.create({
     marginTop: 4,
     alignItems: "center",
   },
-  commentUser: {
-    fontSize: 12,
-    fontWeight: "700",
-    color: "#111",
-  },
-  commentText: {
-    fontSize: 12,
-    color: "#111",
-  },
-  heart: {
-    fontSize: 12,
-    color: "#D11A2A",
-  },
-
+  commentUser: { fontSize: 12, fontWeight: "700", color: "#111" },
+  commentText: { fontSize: 12, color: "#111" },
+  heart: { fontSize: 12, color: "#D11A2A" },
   timeText: {
     paddingHorizontal: 14,
     marginTop: 8,
@@ -346,7 +248,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#999",
   },
-
   alertBtn: {
     marginHorizontal: 14,
     marginTop: 18,
@@ -362,7 +263,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 0.3,
   },
-
   bottomNav: {
     position: "absolute",
     left: 0,
