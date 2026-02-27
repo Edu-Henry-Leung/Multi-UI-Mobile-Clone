@@ -69,17 +69,17 @@ export default function Index() {
           <View style={styles.actionsRow}>
             <View style={styles.actionsLeft}>
               <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.actionIcon}>♡</Text>
+                <Feather name="heart" size={24} color="black" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.actionIcon}>💬</Text>
+                <Feather name="message-circle" size={24} color="black" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.actionIcon}>✈︎</Text>
+                <Feather name="send" size={24} color="black" />
               </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.actionBtn}>
-              <Text style={styles.actionIcon}>🔖</Text>
+              <Feather name="bookmark" size={24} color="black" />
             </TouchableOpacity>
           </View>
           {/* Likes */}
