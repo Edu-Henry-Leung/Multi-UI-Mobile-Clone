@@ -26,6 +26,12 @@ export default function Profile() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backBtn}
+          >
+            <Text style={styles.backIcon}>‹</Text>
+          </TouchableOpacity>
           <Text style={styles.username}>samir_k</Text>
         </View>
 
@@ -175,5 +181,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FFF",
     backgroundColor: "#EEE",
+  },
+  backBtn: {
+    position: "absolute",
+    left: 8,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  backIcon: {
+    fontSize: 32,
+    color: "#111",
+    fontWeight: "300",
+    marginTop: -4,
   },
 });
