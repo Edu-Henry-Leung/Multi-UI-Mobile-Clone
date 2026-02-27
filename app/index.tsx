@@ -75,17 +75,17 @@ export default function Index() {
           <View style={styles.actionsRow}>
             <View style={styles.actionsLeft}>
               <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.actionIcon}>♡</Text>
+                <Feather name="heart" size={24} color="black" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.actionIcon}>💬</Text>
+                <Feather name="message-circle" size={24} color="black" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.actionIcon}>✈︎</Text>
+                <Feather name="send" size={24} color="black" />
               </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.actionBtn}>
-              <Text style={styles.actionIcon}>🔖</Text>
+              <Feather name="bookmark" size={24} color="black" />
             </TouchableOpacity>
           </View>
 
@@ -133,15 +133,6 @@ export default function Index() {
 
           <Text style={styles.timeText}>1 day ago</Text>
         </View>
-
-        {/* Bottom Alert Button */}
-        <TouchableOpacity
-          style={styles.alertBtn}
-          onPress={onPressAlert}
-          activeOpacity={0.9}
-        >
-          <Text style={styles.alertBtnText}>Alert</Text>
-        </TouchableOpacity>
       </ScrollView>
 
       {/* Bottom Nav */}
