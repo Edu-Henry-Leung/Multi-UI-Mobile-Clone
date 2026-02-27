@@ -116,14 +116,8 @@ export default function Index() {
           </View>
           <Text style={styles.timeText}>1 day ago</Text>
         </View>
-        {/* Bottom Alert Button */}
-        <TouchableOpacity
-          style={styles.alertBtn}
-          onPress={onPressAlert}
-          activeOpacity={0.9}
-        >
-          <Text style={styles.alertBtnText}>Alert</Text>
-        </TouchableOpacity>
+      
+      
       </ScrollView>
       {/* Bottom Nav */}
       <View style={styles.bottomNav}>
