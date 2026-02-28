@@ -19,9 +19,7 @@ export default function PostDetails() {
       <StatusBar barStyle="dark-content" /> {/* Top Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.headerIconBtn}>
-          <Text style={styles.headerIcon} onPress={() => router.back()}>
-            ‹
-          </Text>
+          <Text style={styles.headerIcon} onPress={() => router.back()}></Text>
         </TouchableOpacity>
         <View style={styles.headerTitleWrap}>
           <Text style={styles.headerSmall}>OOTD_EVERYDAY</Text>
@@ -79,7 +77,7 @@ export default function PostDetails() {
             </TouchableOpacity>
           </View>
           {/* Likes */}
-          <Text style={styles.likesText}>
+          <View style={styles.likesRow}>
             <Image
               style={styles.likesAvatar}
               source={{ uri: "https://randomuser.me/api/portraits/men/3.jpg" }}
@@ -94,8 +92,10 @@ export default function PostDetails() {
               style={styles.likesAvatar}
               source={{ uri: "https://randomuser.me/api/portraits/men/4.jpg" }}
             />
-            {"  "}Liked by paisley.print.48 and 7 others
-          </Text>
+            <Text style={styles.likesText}>
+              Liked by paisley.print.48 and 7 others
+            </Text>
+          </View>
           {/* Caption */}
           <View style={styles.captionRow}>
             <Text style={styles.username}>frenchie_fry39 </Text>
@@ -176,10 +176,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   actionIcon: { fontSize: 18, color: "#111" },
-  likesAvatar: { width: 12, height: 12, borderRadius: 17 },
-  likesText: {
+  likesRow: {
+    flexDirection: "row",
+    alignItems: "center",
     paddingHorizontal: 14,
     marginTop: 2,
+    gap: 4,
+  },
+  likesAvatar: { width: 12, height: 12, borderRadius: 6 },
+  likesText: {
     fontSize: 12,
     color: "#111",
     fontWeight: "600",
