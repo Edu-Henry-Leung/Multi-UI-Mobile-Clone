@@ -2,64 +2,79 @@ import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    FlatList,
-    Image,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  FlatList,
+  Image,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const screenWidth = Dimensions.get("window").width;
+const photoSize = (screenWidth - 2) / 3;
 
 export default function Search() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const searchResults = [
+  const photoResults = [
     {
       id: "1",
-      name: "ootd_everyday",
-      handle: "@ootd_everyday",
-      avatar: "https://randomuser.me/api/portraits/men/2.jpg",
+      photo: "https://picsum.photos/400/400?random=1",
     },
     {
       id: "2",
-      name: "frenchie_fry39",
-      handle: "@frenchie_fry39",
-      avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+      photo: "https://picsum.photos/400/400?random=2",
     },
     {
       id: "3",
-      name: "paisley.print.48",
-      handle: "@paisley.print.48",
-      avatar: "https://randomuser.me/api/portraits/women/1.jpg",
+      photo: "https://picsum.photos/400/400?random=3",
     },
     {
       id: "4",
-      name: "lil_wyatt838",
-      handle: "@lil_wyatt838",
-      avatar: "https://randomuser.me/api/portraits/men/4.jpg",
+      photo: "https://picsum.photos/400/400?random=4",
     },
     {
       id: "5",
-      name: "pia.ina.pod",
-      handle: "@pia.ina.pod",
-      avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+      photo: "https://picsum.photos/400/400?random=5",
+    },
+    {
+      id: "6",
+      photo: "https://picsum.photos/400/400?random=6",
+    },
+    {
+      id: "7",
+      photo: "https://picsum.photos/400/400?random=7",
+    },
+    {
+      id: "8",
+      photo: "https://picsum.photos/400/400?random=8",
+    },
+    {
+      id: "9",
+      photo: "https://picsum.photos/400/400?random=9",
+    },
+    {
+      id: "10",
+      photo: "https://picsum.photos/400/400?random=10",
+    },
+    {
+      id: "11",
+      photo: "https://picsum.photos/400/400?random=11",
+    },
+    {
+      id: "12",
+      photo: "https://picsum.photos/400/400?random=12",
     },
   ];
 
-  const renderItem = ({ item }: { item: (typeof searchResults)[0] }) => (
-    <TouchableOpacity style={styles.searchItem}>
-      <Image style={styles.avatar} source={{ uri: item.avatar }} />
-      <View style={styles.itemContent}>
-        <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemHandle}>{item.handle}</Text>
-      </View>
-      <TouchableOpacity style={styles.followBtn}>
-        <Text style={styles.followText}>Follow</Text>
-      </TouchableOpacity>
+  const renderItem = ({ item }: { item: (typeof photoResults)[0] }) => (
+    <TouchableOpacity style={styles.photoItem}>
+      <Image style={styles.photo} source={{ uri: item.photo }} />
     </TouchableOpacity>
   );
 
@@ -75,7 +90,7 @@ export default function Search() {
           <Feather name="search" size={18} color="#999" />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search users, posts..."
+            placeholder="Search photos..."
             placeholderTextColor="#999"
             value={searchQuery}
             onChangeText={setSearchQuery}
@@ -83,11 +98,12 @@ export default function Search() {
         </View>
       </View>
 
-      {/* Search Results */}
+      {/* Photo Grid */}
       <FlatList
-        data={searchResults}
+        data={photoResults}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        numColumns={3}
         contentContainerStyle={styles.listContent}
       />
     </SafeAreaView>
@@ -144,37 +160,16 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
 
-  searchItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#F0F0F0",
-  },
-
-  avatar: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: "#DDD",
-    marginRight: 12,
-  },
-
-  itemContent: {
+  photoItem: {
     flex: 1,
+    aspectRatio: 1,
+    margin: 0,
   },
 
-  itemName: {
-    fontSize: 13,
-    fontWeight: "700",
-    color: "#111",
-  },
-
-  itemHandle: {
-    fontSize: 11,
-    color: "#999",
-    marginTop: 2,
+  photo: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#DDD",
   },
 
   followBtn: {
