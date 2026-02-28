@@ -1,3 +1,5 @@
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   FlatList,
@@ -6,6 +8,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -13,38 +16,36 @@ import {
 // User Stories
 const storyProfileImages = [
   {
+    id: "0",
+    name: "Your Story",
+    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+  },
+  {
     id: "1",
     name: "paisley.print.48",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
+    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
   },
   {
     id: "2",
     name: "ootd_everyday",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    avatar: "https://randomuser.me/api/portraits/men/2.jpg",
   },
   {
     id: "3",
     name: "pia.ina.pod",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
+    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
   },
   {
     id: "4",
     name: "frenchie_fry39",
-    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
   },
   {
     id: "5",
     name: "lil_wyatt838",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-  },
-  {
-    id: "6",
-    name: "User6",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    avatar: "https://randomuser.me/api/portraits/men/4.jpg",
   },
 ];
-
-// Random Posts that can't be interacted with.
 
 const posts = [
   {
@@ -62,23 +63,28 @@ const posts = [
     profileImage: "https://randomuser.me/api/portraits/women/2.jpg",
     postImage:
       "https://images.pexels.com/photos/15062488/pexels-photo-15062488/free-photo-of-snow-near-castle-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    likes: 7,
+    likes: 4,
     caption: "This shot looks so monochrome lol!",
   },
 ];
 
 const HomePage = () => {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       {/* The header for instagram. */}
       <View style={styles.header}>
-        <Image
-          source={{
-            uri: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
-          }}
-          style={styles.logo}
-        />
+        <TouchableOpacity>
+          <Ionicons name="camera-outline" size={30} color="black" />
+        </TouchableOpacity>
         <Text style={styles.headerText}>Instagram</Text>
+        <TouchableOpacity>
+          <Ionicons
+            name="chatbubble-ellipses-outline"
+            size={30}
+            color="black"
+          />
+        </TouchableOpacity>
       </View>
 
       {/* The user stories below the header. */}
@@ -90,34 +96,61 @@ const HomePage = () => {
       >
         {storyProfileImages.map((story) => (
           <View key={story.id} style={styles.story}>
-            <Image source={{ uri: story.image }} style={styles.storyImage} />
+            <Image source={{ uri: story.avatar }} style={styles.storyAvatar} />
             <Text style={styles.storyName}>{story.name}</Text>
           </View>
         ))}
       </ScrollView>
 
-      {/* The posts that go below the stories.*/}
+      {/* The posts that go below the stories on the home page. */}
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={posts}
         keyExtractor={(post) => post.id}
         renderItem={({ item }) => (
           <View style={styles.postContainer}>
             <View style={styles.userInfo}>
-              {/* user Info */}
+              {/* User Infos */}
               <Image
                 source={{ uri: item.profileImage }}
                 style={styles.profileImage}
               />
               <Text style={styles.userName}>{item.username}</Text>
+              <TouchableOpacity
+                style={styles.moreBtn}
+                onPress={() => router.push("/(tabs)/homeTab/postDetails")}
+              >
+                <Text style={styles.moreText}>⋯</Text>
+              </TouchableOpacity>
             </View>
             {/* Post Image */}
             <Image source={{ uri: item.postImage }} style={styles.postImage} />
-            {/* Likes and Captions */}
+            {/* Likes, comments, shares and Captions */}
             <View style={styles.postDetails}>
-              <Text style={styles.likes}>{item.likes} likes</Text>
+              <View style={styles.postIcons}>
+                <View style={styles.postIconsLeft}>
+                  <TouchableOpacity>
+                    <Ionicons name="heart-outline" size={20} />
+                  </TouchableOpacity>
+                  {"  "}
+                  <TouchableOpacity>
+                    <Ionicons name="chatbubble-outline" size={20} />
+                  </TouchableOpacity>
+                  {"  "}
+                  <TouchableOpacity>
+                    <Ionicons name="paper-plane-outline" size={20} />
+                  </TouchableOpacity>
+                </View>
+                <TouchableOpacity style={styles.postBookmark}>
+                  <Ionicons name="bookmark-outline" size={20} />
+                </TouchableOpacity>
+              </View>
+              <Text style={[styles.likesText, styles.bold]}>
+                {item.likes} likes
+              </Text>
+
               <Text style={styles.caption}>
-                <Text style={styles.bold}>{item.username}</Text>
-                {item.caption}
+                <Text style={styles.bold}>{item.username}</Text> {item.caption}
               </Text>
             </View>
           </View>
@@ -135,37 +168,33 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     backgroundColor: "#fff",
   },
-  logo: {
-    width: 50,
-    height: 50,
-    borderRadius: 35,
-    borderWidth: 2,
-    borderColor: "#d6249f",
-    resizeMode: "cover",
-    marginRight: 20,
-  },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 15,
+    justifyContent: "space-between",
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
+    padding: 15,
   },
   headerText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "700",
+    fontFamily: "Billabong",
   },
   storyContainer: {
     flexDirection: "row",
     paddingVertical: 10,
     paddingHorizontal: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    marginBottom: 10,
   },
   story: {
     alignItems: "center",
     marginRight: 15,
     width: 90,
   },
-  storyImage: {
+  storyAvatar: {
     width: 50,
     height: 50,
     borderRadius: 35,
@@ -213,8 +242,23 @@ const styles = StyleSheet.create({
   postDetails: {
     padding: 10,
   },
-  likes: {
-    fontWeight: "bold",
+  postIcons: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  postIconsLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  postBookmark: {
+    alignItems: "flex-end",
+    justifyContent: "center",
+    paddingLeft: "auto",
+  },
+  likesText: {
+    fontSize: 14,
   },
   caption: {
     marginTop: 5,
@@ -222,5 +266,17 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: "bold",
     marginRight: 5,
+  },
+  moreBtn: {
+    width: 36,
+    height: 36,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    marginLeft: "auto",
+  },
+  moreText: {
+    fontSize: 20,
+    color: "#111",
+    fontWeight: "700",
   },
 });

@@ -26,12 +26,6 @@ export default function Profile() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            style={styles.backBtn}
-          >
-            <Text style={styles.backIcon}>‹</Text>
-          </TouchableOpacity>
           <Text style={styles.username}>samir_k</Text>
         </View>
 
@@ -39,7 +33,7 @@ export default function Profile() {
         <View style={styles.profileRow}>
           <Image
             style={styles.avatar}
-            source={require("../assets/images/speed-brainrot.png")}
+            source={require("../../../assets/images/speed-brainrot.png")}
           />
 
           <View style={styles.statsContainer}>
@@ -66,7 +60,7 @@ export default function Profile() {
 
         <TouchableOpacity
           style={styles.editBtn}
-          onPress={() => router.push("/edit-profile")}
+          onPress={() => router.push("/(tabs)/profileTab/edit-profile")}
         >
           <Text style={styles.editBtnText}>Edit Profile</Text>
         </TouchableOpacity>
@@ -181,19 +175,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FFF",
     backgroundColor: "#EEE",
-  },
-  backBtn: {
-    position: "absolute",
-    left: 8,
-    width: 40,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  backIcon: {
-    fontSize: 32,
-    color: "#111",
-    fontWeight: "300",
-    marginTop: -4,
   },
 });
