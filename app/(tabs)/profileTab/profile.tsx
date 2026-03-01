@@ -104,14 +104,14 @@ export default function Profile() {
             style={styles.editBtn}
             onPress={() => router.push("/(tabs)/profileTab/edit-profile")}
           >
-            <Text style={styles.buttonText}>Edit profile</Text>
+            <Text style={styles.buttonText}>Edit Profile</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.shareBtn}>
-            <Text style={styles.buttonText}>Share profile</Text>
+            <Text style={styles.buttonText}>Share Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.shareBtn}>
-            <Text style={styles.buttonText}>add friend</Text>
+            <Text style={styles.buttonText}>Add Friends</Text>
           </TouchableOpacity>
         </View>
 
