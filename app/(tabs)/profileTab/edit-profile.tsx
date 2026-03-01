@@ -1,12 +1,12 @@
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -14,7 +14,7 @@ export default function EditProfile() {
   const router = useRouter();
 
   const [name, setName] = useState("Samir Karki");
-  const [bio, setBio] = useState("SAIT Student");
+  const [username, setUsername] = useState("samir_k");
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -25,8 +25,12 @@ export default function EditProfile() {
         <Text style={styles.label}>Name</Text>
         <TextInput style={styles.input} value={name} onChangeText={setName} />
 
-        <Text style={styles.label}>Bio</Text>
-        <TextInput style={styles.input} value={bio} onChangeText={setBio} />
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.input}
+          value={username}
+          onChangeText={setUsername}
+        />
 
         <TouchableOpacity
           style={styles.saveBtn}
