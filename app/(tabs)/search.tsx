@@ -7,7 +7,6 @@ import {
   Image,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View,
@@ -83,9 +82,6 @@ export default function Search() {
       <StatusBar barStyle="dark-content" />
       {/* Search Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
-          <Text style={styles.backIcon}>‹</Text>
-        </TouchableOpacity>
         <View style={styles.searchInputContainer}>
           <Feather name="search" size={18} color="#999" />
           <TextInput
@@ -143,7 +139,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 12,
-    marginLeft: 8,
     height: 36,
     backgroundColor: "#F3F3F3",
     borderRadius: 8,
