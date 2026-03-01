@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -18,8 +19,11 @@ export default function PostDetails() {
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="dark-content" /> {/* Top Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.headerIconBtn}>
-          <Text style={styles.headerIcon} onPress={() => router.back()}></Text>
+        <TouchableOpacity
+          style={styles.headerIconBtn}
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" style={styles.headerIcon} />
         </TouchableOpacity>
         <View style={styles.headerTitleWrap}>
           <Text style={styles.headerSmall}>OOTD_EVERYDAY</Text>
@@ -98,19 +102,19 @@ export default function PostDetails() {
           </View>
           {/* Caption */}
           <View style={styles.captionRow}>
-            <Text style={styles.username}>frenchie_fry39 </Text>
+            <Text style={styles.username}>frenchie_fry39</Text>
             <Text style={styles.captionText}>Fresh shot on a sunny day!</Text>
           </View>
           {/* Comments */}
           <Text style={styles.viewComments}>View all 12 comments</Text>
           <View style={styles.commentRow}>
-            <Text style={styles.commentUser}>lil_wyatt838 </Text>
+            <Text style={styles.commentUser}>lil_wyatt838</Text>
             <Text style={styles.commentText}>Awesome totes!!</Text>
           </View>
           <View style={styles.commentRow}>
-            <Text style={styles.commentUser}>pia.ina.pod </Text>
+            <Text style={styles.commentUser}>pia.ina.pod</Text>
             <Text style={styles.commentText}>Gorg. Love it!</Text>
-            <Text style={styles.heart}> ♥</Text>
+            <Ionicons name="heart" color="#D11A2A" />
           </View>
           <Text style={styles.timeText}>1 day ago</Text>
         </View>
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
   },
   userRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   avatar: { width: 34, height: 34, borderRadius: 17, backgroundColor: "#DDD" },
-  username: { fontSize: 13, fontWeight: "700", color: "#111" },
+  username: { fontSize: 13, fontWeight: "700", color: "#111", marginRight: 4 },
   subText: { fontSize: 11, color: "#777", marginTop: 2 },
   moreBtn: {
     width: 36,
@@ -209,9 +213,13 @@ const styles = StyleSheet.create({
     marginTop: 4,
     alignItems: "center",
   },
-  commentUser: { fontSize: 12, fontWeight: "700", color: "#111" },
+  commentUser: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "#111",
+    marginRight: 4,
+  },
   commentText: { fontSize: 12, color: "#111" },
-  heart: { fontSize: 12, color: "#D11A2A" },
   timeText: {
     paddingHorizontal: 14,
     marginTop: 8,

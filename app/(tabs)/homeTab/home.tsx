@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -96,7 +97,15 @@ const HomePage = () => {
       >
         {storyProfileImages.map((story) => (
           <View key={story.id} style={styles.story}>
-            <Image source={{ uri: story.avatar }} style={styles.storyAvatar} />
+            <LinearGradient
+              colors={["#d6249f", "#fdbb2d"]}
+              style={styles.storyAvatarBorder}
+            >
+              <Image
+                source={{ uri: story.avatar }}
+                style={styles.storyAvatar}
+              />
+            </LinearGradient>
             <Text style={styles.storyName}>{story.name}</Text>
           </View>
         ))}
@@ -116,15 +125,20 @@ const HomePage = () => {
                 style={styles.profileImage}
               />
               <Text style={styles.userName}>{item.username}</Text>
-              <TouchableOpacity
-                style={styles.moreBtn}
-                onPress={() => router.push("/(tabs)/homeTab/postDetails")}
-              >
+              <TouchableOpacity style={styles.moreBtn}>
                 <Text style={styles.moreText}>⋯</Text>
               </TouchableOpacity>
             </View>
             {/* Post Image */}
-            <Image source={{ uri: item.postImage }} style={styles.postImage} />
+            <TouchableOpacity
+              onPress={() => router.push("/(tabs)/homeTab/postDetails")}
+            >
+              <Image
+                source={{ uri: item.postImage }}
+                style={styles.postImage}
+              />
+            </TouchableOpacity>
+
             {/* Likes, comments, shares and Captions */}
             <View style={styles.postDetails}>
               <View style={styles.postIcons}>
@@ -132,11 +146,9 @@ const HomePage = () => {
                   <TouchableOpacity>
                     <Ionicons name="heart-outline" size={20} />
                   </TouchableOpacity>
-                  {"  "}
                   <TouchableOpacity>
                     <Ionicons name="chatbubble-outline" size={20} />
                   </TouchableOpacity>
-                  {"  "}
                   <TouchableOpacity>
                     <Ionicons name="paper-plane-outline" size={20} />
                   </TouchableOpacity>
@@ -198,9 +210,14 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 35,
-    borderWidth: 2,
-    borderColor: "#d6249f",
+  },
+  storyAvatarBorder: {
+    borderRadius: 35,
+    width: 55,
+    height: 55,
     resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
   },
   storyName: {
     marginTop: 5,
@@ -236,7 +253,6 @@ const styles = StyleSheet.create({
   postImage: {
     width: "100%",
     height: 300,
-    borderRadius: 10,
     resizeMode: "cover",
   },
   postDetails: {
